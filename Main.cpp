@@ -1,149 +1,143 @@
+/*
+	Module: Main
+	File: Main.cpp
+	Application: Turing Machine Application
+	Language: GNU C++
+	Computer: Dell - Optiplex 990
+	Operating system: Ubuntu 14.04.4 LTS
+	Course: CPT_S 322
+	Author: David Harkins
+	Date: 4/30/2016
+	
+	Description: The main entry point for the application. 
+		It takes user command input and calls the correct commands.
+*/
+
+#include "Visable.h"
+#include "Delete_Command.h"
+#include "Exit_Command.h"
+#include "Help_Command.h"
+#include "Insert_Command.h"
+#include "List_Command.h"
+#include "Quit_Command.h"
+#include "Run_Command.h"
+#include "Set_Command.h"
+#include "Show_Command.h"
+#include "Truncate_Command.h"
+#include "View_Command.h"
+#include "Turing_Machine.h"
+
+#include <string>
 #include <iostream>
 #include <stdio.h>
+#include <fstream>
 #include <string>
 
-// Change w to TM status: completed, never be run, currently running. (move current string down)
+using namespace std;
+
+/* Name: main
+* Purpose: The entry point for the application.
+* Operation: This function attempts to load the Turing Machine definition file named after 
+	the user passed parameter. If the Turing Machine file is able to be loaded, and it is 
+	valid, the function continues. If it was not able to be loaded, or it was invalid, an 
+	error message is displayed, and the application terminates. Next, the function attempts 
+	to load the input string file. On failure or success, the application continues to a 
+	loops that prompts for a command from the user, and calls the correct function to handle it.
+*/
+int main(int argc, char** arg) {
+
+	const int Success(0);
+	const int Failure(-1);
 
 
-void Command_Help() {
+		// Validate input.
+	if (argc < 2 || argc > 3) {
+		printf("Incorrect argument count.\n");
 
-	printf("(D)elete   - Delete input string from list.\n"); 
-	printf("E(x)it     - Exit application.\n"); 
-	printf("(H)elp     - Help user.\n"); 
-	printf("(I)nsert   - Insert input string into list.\n"); 
-	printf("(L)ist     - List input strings.\n"); 
-	printf("(Q)uit     - Quit operation of Turing machine on input string.\n"); 
-	printf("(R)un      - Run Turing machine on input string.\n"); 
-	printf("S(e)t      - Set maximum number of transitions to perform.\n"); 
-	printf("Sho(w)     - Show status of application.\n");
-	printf("(T)runcate - Truncate instantaneous description.\n"); 
-	printf("(V)iew     - View Turing machine.\n"); 
-}
+		return Failure;
+	}
 
-void Command_View() {
+		// Turing machine class.
+	Turing_Machine TM(arg[1]);
 
-	printf("This Turing machine accepts the language of one or more a's followed by the same number of b's.\n\n");
+		// The amount of truncation to do.
+	int Truncation = 32;
 
-	printf("Q = {s0, s1, s2, s4}\n\n");
+		// The number of transitions to do per run command.
+	int Transition_Count = 1;
+
+	bool Input_Strings_Changed = false;
 	
-	printf("Sigma = {a, b}\n\n");
+		// The list of input string.
+	vector<string> Input_Strings;
 
-	printf("Gamma = {a, b, X, Y, -}\n\n");
-
-	printf("Delta(s0, a) = (s1, X, R)\n");
-	printf("Delta(s0, Y) = (s3, Y, R)\n");
-	printf("Delta(s1, a) = (s1, a, R)\n");
-	printf("Delta(s1, b) = (s2, Y, R)\n");
-	printf("Delta(s1, Y) = (s1, Y, R)\n");
-	printf("Delta(s2, a) = (s2, a, R)\n");
-	printf("Delta(s2, X) = (s0, X, R)\n");
-	printf("Delta(s2, Y) = (s2, Y, R)\n");
-	printf("Delta(s3, Y) = (s3, Y, R)\n");
-	printf("Delta(s3, -) = (s4, -, R)\n\n");
-
-	printf("Q0 = s0\n\n");
-
-	printf("B = -\n\n");
-
-	printf("F = {s4}\n\n");
-}
-
-void Command_List() {
-	printf("1. a\n");
-	printf("2. ab\n");
-	printf("3. \\\n");
-	printf("4. aaabb\n");
-	printf("5. aaaaaaaaaaabbbbbbbbbb\n");
-	printf("6. aabb\n");
-	printf("7. aaaaaabbbbbbb\n");
-	printf("8. ba\n");
-	printf("9. aba\n");
-	printf("10. bb\n");
-}
-
-void Command_Insert() {
-	printf("Input string: abbb\n");
-	printf("String inserted into list!\n");
-}
-
-void Command_Delete() {
-	printf("Input string number: 1\n");
-	printf("String deleted!\n");
-}
-
-void Command_Set() {
-	printf("Maximum number of transitions [1]: 20\n");
-	printf("Number of transitions changed to 20.\n");
-}
-
-void Command_Truncate() {
-	printf("Maximum number of cells [32]: 10\n");
-	printf("Setting changed!\n");
-}
-
-void Command_Run() {
-	printf("Input string number: 1\n");
-	printf("0. [s0]aaabb\n");
-	printf("7. XXXXY-[s4]\n");
-	printf("Input string aaabb was accepted in 7 transitions.\n");
-}
-
-void Command_Quit() {
-	printf("Input string aaabb was not accepted or rejected in 112 transitions.\n");
-}
-
-void Command_Exit() {
-	printf("Input string file successfully saved to disc.\n");
-}
-
-void Command_Show() {
-	printf("Course name: CPT_S 322\n");
-	printf("Semester: Spring\n");
-	printf("Year: 2016\n\n");
-
-	printf("Instructor: Neil Corrigan\n");
-	printf("Author: David Harkins\n\n");
-
-	printf("Version number: 1\n");
-	printf("Max transitions: 10\n");
-	printf("Max cells to left and right: 10\n");
-	printf("Name of TM: A\n");
-	printf("TM Status: Completed\nThe input string aaabb has been accepted in 7 transitions.\n");
-}
-
-int main() {
+	if (TM.is_valid_definition() == false) {
+		return -1;
+	}
+		
 	printf("Successfully loaded TM.\n");
 
+		// Attempt to load the input string list	
+	string line;
+	
+	line += arg[1];
+	line += ".STR";
+	
+	ifstream InputString_File (line.c_str());
+	if (InputString_File.is_open()){		
+		while ( getline (InputString_File,line) ){
+		  
+				// If the input string is the empty string just add it to the list.
+			if(line == "\\"){
+				Input_Strings.push_back("");
+				continue;
+			}
+		  
+				// Check the input string against the TM machine.			
+			if(TM.is_valid_input_string(line)){
+				// It is a valid input string.
+				Input_Strings.push_back(line);
+			}else{
+				// it is not a valid input string.
+				cout << "Warning: Input string '" << line << "' is not valid and was removed.\n"; 
+				Input_Strings_Changed = true;
+			} 
+		}
+		InputString_File.close();
+	}
+
+		// The input string size before and after the command.
+	int Temp_Size = 0;
 	bool Quit = false;
 
 	while (!Quit) {
-				
+
 		printf("Command: ");
 
 		std::string Input_Str = "";
-		std::getline (std::cin, Input_Str);
+		std::getline(std::cin, Input_Str);
 
-		if(Input_Str.size() > 1){
-		  
+		if (Input_Str.size() > 1) {
+
 			bool space = false;
 
-		  	for(int i = 0 ; i < Input_Str.size(); i++){
-				if(Input_Str[i] == ' '){
+			for (unsigned int i = 0; i < Input_Str.size(); i++) {
+				if (Input_Str[i] == ' ') {
 					space = true;
-					break;		
+					break;
 				}
-		  	}
-		
-			if(space){
+			}
+
+			if (space) {
 				printf("Invalid command: Too many commands.\n");
 				continue;
-			}else{
-				printf("Invalid command: Too many characters in the command.\n");	
+			}else {
+				printf("Invalid command: Too many characters in the command.\n");
 				continue;
-			}	
+			}
 		}
 
-		if(Input_Str.size() < 1){
+		if (Input_Str.size() < 1) {
 			continue;
 		}
 
@@ -151,65 +145,81 @@ int main() {
 
 				// E(x)it
 			case 'x':
-				Command_Exit();
+				if(Input_Strings_Changed){			
+					Exit_Command(arg[1], Input_Strings);
+				}
 				return 0;
 				break;
 
 				// (D)elete
 			case 'd':
-				Command_Delete();
+				Temp_Size = Input_Strings.size();
+				
+				Delete_Command(Input_Strings, TM);
+				
+				if(Temp_Size != Input_Strings.size()){
+					Input_Strings_Changed = true;					
+				}
+				
 				break;
 
 				// (H)elp 
 			case 'h':
-				Command_Help();
+				Help_Command();
 				break;
 
 				// (L)ist
 			case 'l':
-				Command_List();
+				List_Command(Input_Strings);
 				break;
 
 				// (Q)uit
 			case 'q':
-				Command_Quit();
+				Quit_Command(TM);
 				break;
 
 			case 'i':
-				Command_Insert();
+			
+				Temp_Size = Input_Strings.size();
+			
+				Insert_Command(Input_Strings, TM);
+				
+				if(Temp_Size != Input_Strings.size()){
+					Input_Strings_Changed = true;					
+				}
+				
 				break;
 
 				// (R)un
 			case 'r':
-				Command_Run();
+				Run_Command(TM, Input_Strings, Truncation, Transition_Count);
 				break;
 
 				// S(e)t
 			case 'e':
-				Command_Set();
+				Set_Command(Transition_Count);
 				break;
 
 				// Sho(w)
 			case 'w':
-				Command_Show();
+				Show_Command(TM, arg[1], Transition_Count, Truncation);
 				break;
 
 				// (T)runcate
 			case 't':
-				Command_Truncate();
+				Truncate_Command(Truncation);
 				break;
 
 				// (V)iew 
 			case 'v':
-				Command_View();
+				View_Command(TM);
 				break;
-
 
 			default:
 				printf("Invalid command: Not a legal command.\n");
-			break;
+				break;
 		}
 	}
 
-	return 0;
+	return Success;
 }

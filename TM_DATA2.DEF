@@ -1,0 +1,19 @@
+This Turing machine accepts the language 
+of one a followed by any number of b's than followed by 'a'.
+
+STATES: s0 s1 s2
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b -
+
+TRANSITION_FUNCTION:
+s0 a  s1 a R
+s1 b  s1 b R
+s1 a  s2 a R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s2
