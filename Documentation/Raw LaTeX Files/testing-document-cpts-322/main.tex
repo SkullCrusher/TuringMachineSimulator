@@ -1,0 +1,765 @@
+\documentclass{report}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+ 
+\begin{document}
+ 
+ \begin{titlepage}
+	\centering
+    \includegraphics[width=4cm, height=3cm]{head-white-gray-big.png}
+
+	{\scshape\LARGE Washington State University \par}
+	\vspace{1cm}
+	{\scshape\Large Computer Science 322\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Testing document\par}
+	\vspace{2cm}
+	{\Large\itshape David Harkins\par}
+	\vfill
+	Instructor\par
+	\textsc{Neil Corrigan}
+
+	\vfill
+	{\large \today\par}
+\end{titlepage}
+\pagebreak
+ 
+\tableofcontents{}
+\pagebreak
+
+
+
+
+\chapter{Valid Turing Machine}
+     
+\section{Description:} A valid Turing Machine file
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 s2 s3 s4
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b X Y -
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s1 a  s1 a R
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s4
+\end{verbatim}
+\section{Input string:} aabb
+\section{Expected results:} Input string is accepted in 13 transitions.
+\section{Results:} The input string was accepted in 13 transitions.
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+\chapter{Valid Turing Machine 2}
+     
+\section{Description:} A valid Turing Machine file that accepts one 'a' followed by any number of b's than followed by 'a'.
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one 'a' followed by any number of b's than followed by 'a'.
+
+STATES: s0 s1 s2
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b -
+
+TRANSITION_FUNCTION:
+s0 a  s1 a R
+s1 b  s1 b R
+s1 a  s2 a R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s2
+\end{verbatim}
+\section{Expected results:} The definition to be loaded, 'abba' to be accepted, and 'abbb' to be rejected.
+\section{Results:} The definition loaded without error, 'abba' was accepted, and 'abbb' was rejected. 
+ \begin{verbatim}
+Successfully loaded TM.
+Command: i
+Input string: abba
+String 'abba' inserted into list!
+Command: i
+Input string: abbb
+String 'abbb' inserted into list!
+Command: r
+Input string number: 1
+0. [s0]abba
+1. a[s1]bba
+Command: r
+2. ab[s1]ba
+Command: r
+3. abb[s1]a
+Command: r
+4. abba[s2]
+Input string abba was accepted in 4 transitions.
+Command: r
+Input string number: 2
+0. [s0]abbb
+1. a[s1]bbb
+Command: r
+2. ab[s1]bb
+Command: r
+3. abb[s1]b
+Command: r
+4. abbb[s1]
+Command: r
+4. abbb[s1]
+Input string abbb was rejected in 4 transitions.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+
+
+
+
+\chapter{Invalid Turing Machine}
+     
+\section{Description:} A invalid Turing Machine file
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 s2 s3 s4 s4 []
+	
+INPUT_ALPHABET: a b [ ] c
+
+TAPE_ALPHABET: a b X Y Y [ ]
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s9 e  s9 e Y
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATE: s9
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s4 s4 s9
+\end{verbatim}
+
+\section{Expected results:} 
+The file should be rejected because of the following errors:
+\begin{enumerate}
+\item State contains duplicate 's4' and invalid state '[]'.
+\item Input Alphabet cannot contain '[' or ']'.
+\item Input Alphabet character 'c' is not in the tape alphabet.
+
+\item Tape Alphabet contains duplicate 'Y'.
+\item Tape Alphabet cannot contain '[' or ']'.
+
+\item Transition contains an invalid state 's9'.
+\item Transition contains read and write character 'e' not from the tape alphabet.
+\item Transition contains an invalid direction 'Y'.
+
+\item Initial state 's9' is not in the list of states.
+
+\item Blank Character '-' is not contained within the tape alphabet.
+
+\item Final States contain duplicate 's4' and 's9' is not in the list of states.
+\end{enumerate}
+
+\section{Results:} 
+
+The following errors were found caught:
+\begin{verbatim}
+Error: States must be unique but 's4' is not a unique state.
+Error: State contains character '[]' that is reserved.
+Error: State contains character '[]' that is reserved.
+Error: Tape alphabet must be unique but 'Y' is not unique.
+Error: Tape alphabet character '[' is reserved.
+Error: Tape alphabet character ']' is reserved.
+Error: Transition can only contain L or R not 'Y'.
+Error: Blank character '-' is not in the tape alphabet.
+Error: Input alphabet character '[' is reserved.
+Error: Input alphabet character ']' is reserved.
+Error: Input alphabet character 'c' is not in the tape alphabet.
+Error: Transition read character 'e' is not in tape alphabet.
+Error: Transition write character 'e' is not in tape alphabet.
+Error: Transition read character '-' is not in tape alphabet.
+Error: Transition write character '-' is not in tape alphabet.
+Error: Transition source state 's9' is not in states.
+Error: Transition destination state 's9' is not in states.
+Error: Final states must be unique but 's4' is not a unique state.
+Error: Final states 's9' is not in the list of states.
+Error: Initial state 's9 is not in the list of states.
+\end{verbatim}
+
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+\chapter{Valid Turing Machine with mixed case keywords}
+     
+\section{Description:} A valid Turing Machine file that has mixed case in the keywords.
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STaTeS: s0 s1 s2 s3 s4
+	
+InPuT_AlPHaBET: a b
+
+TaPE_ALPHABET: a b X Y -
+
+TRaNSiTiON_FUNCTiON:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s1 a  s1 a R
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATe: s0
+
+BLANK_CHARACTeR: -
+
+FINAL_STATEs: s4
+
+
+\end{verbatim}
+\section{Expected results:} Successfully loaded TM.
+\section{Results:} 
+\begin{verbatim}
+Successfully loaded TM.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+
+\chapter{Valid Turing Machine with random formatting}
+     
+\section{Description:} A valid Turing Machine file that has randomly put together formatting.
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 
+s2 s3 s4
+	
+INPUT_ALPHABET: a 
+b
+
+TAPE_ALPHABET: 
+a 
+b 
+X Y -
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R s0 Y  s3 Y R
+s1 a  s1 a R s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L s2 X  
+s0 X R
+s2 Y  s2 Y L s3 Y  s3 Y R
+s3 -  s4 - R INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+FINAL_STATES: 
+s4
+\end{verbatim}
+\section{Expected results:} Successfully loaded TM.
+\section{Results:} 
+\begin{verbatim}
+Successfully loaded TM.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+\chapter{Invalid Turing Machine file with unprintable characters}
+     
+\section{Description:} A valid Turing Machine file that has unprintable characters in it.
+
+\section{Definition File: }
+\begin{verbatim}
+Turing machine not included because it is unprintable.
+There is a unprintable character in each part of the definition.
+\end{verbatim}
+\section{Expected results:} An error messages that will tell the user that areas contain blank characters. 
+\section{Results:} 
+ The error messages cover all of the unprintable characters. The transition does not print a error because it would just repeat the states error message.
+\begin{verbatim}
+Error: State contains a character that is not printable.
+Error: Input alphabet character is not printable.
+Error: Tape alphabet character is not printable.
+Error: Initial state contains a character that is not printable.
+Error: Illegal blank character.
+Error: Blank character ' ' is not in the tape alphabet.
+Error: Input alphabet character is not printable.
+Error: Transition read character '▒' is not in tape alphabet.
+Error: Final state contains a character that is not printable.
+Error: Final states '▒' is not in the list of states.
+Error: Initial state ' is not in the list of states.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+
+\chapter{Valid input string list}
+     
+\section{Description:} A valid input string list that matches with the Turing machine definition file.
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 s2 s3 s4
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b X Y -
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s1 a  s1 a R
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s4
+\end{verbatim}
+\section{Input List:} 
+\begin{verbatim}
+aabb
+abbbbb
+\
+bbaa
+aaaaa
+\end{verbatim}
+\section{Expected results:} No error and the following result from the list command.
+\begin{verbatim}
+1. aabb
+2. abbbbb
+3. \
+4. bbaa
+5. aaaaa
+\end{verbatim}
+\section{Results:} 
+\begin{verbatim}
+1. aabb
+2. abbbbb
+3. \
+4. bbaa
+5. aaaaa
+\end{verbatim}
+
+\section{Test successful or Test failed:} Test failed.
+
+\pagebreak
+
+\chapter{Invalid input string list}
+     
+\section{Description:} A invalid input string list that does not match with the Turing machine definition file.
+
+\section{Definition File: }
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 s2 s3 s4
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b X Y -
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s1 a  s1 a R
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s4
+\end{verbatim}
+\section{Input List:} 
+\begin{verbatim}
+acbb
+aabb
+ad2bbbbb
+\\
+bbzaa
+aasdaaaa
+\end{verbatim}
+\section{Expected results:} Warnings that remove all of the input strings but "aabb".
+\section{Results:} 
+
+\begin{verbatim}
+Successfully loaded TM.
+Warning: Input string 'acbb' is not valid and was removed.
+Warning: Input string 'ad2bbbbb' is not valid and was removed.
+Warning: Input string '\\' is not valid and was removed.
+Warning: Input string 'bbzaa' is not valid and was removed.
+Warning: Input string 'aasdaaaa' is not valid and was removed.
+Command: l
+1. aabb
+\end{verbatim}
+
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+ 
+ 
+ 
+ 
+ 
+\chapter{Command Delete Input}
+\section{Description:} 
+This tests if a input string can be removed from the input string list using the delete input command. The test removes a input string and uses the list command to make sure it is not on the list.
+
+\section{Expected results:} The input string is removed from the input string list.
+\section{Results:} The input string was removed from the list.
+\begin{verbatim}
+Command: l
+1. aabb
+2. aaa
+Command: d
+Input string number: 2
+Input string was removed from the list.
+Command: l
+1. aabb
+Command:
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+\chapter{Command Exit Application}
+\section{Description:} Test that the exit saves the input string list file, if it was modified, and closes the application.
+\section{Expected results:} After a new input string was added, the exit command saves the input string list and closes the application.
+\section{Results:} The input string list was saved and the application closed.
+\begin{verbatim}
+Command: i
+Input string: aaa
+String 'aaa' inserted into list!
+Command: x
+Input string file successfully saved to disc.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+\chapter{Command Help}
+\section{Description:} This test checks to see if the a help message is displayed to the user.
+\section{Expected results:} A message that contains all of the commands to be displayed.
+
+\section{Results:} A message that contains all of the commands.
+\begin{verbatim}
+Command: h
+(D)elete   - Delete input string from list.
+E(x)it     - Exit application.
+(H)elp     - Help user.
+(I)nsert   - Insert input string into list.
+(L)ist     - List input strings.
+(Q)uit     - Quit operation of Turing machine on input string.
+(R)un      - Run Turing machine on input string.
+S(e)t      - Set maximum number of transitions to perform.
+Sho(w)     - Show status of application.
+(T)runcate - Truncate instantaneous description.
+(V)iew     - View Turing machine.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+\chapter{Command Insert}
+\section{Description:} This test checks that a new input string can be added to the list and invalid ones are rejected.
+\section{Expected results:} 'ccc' is rejected and 'aaab' is accepted.
+
+\section{Results:} Only the valid 'aaab' was inserted into the list.
+\begin{verbatim}
+Command: i
+Input string: ccc
+Error: Invalid input string.
+Command: i
+Input string: aaab
+String 'aaab' inserted into list!
+Command: l
+1.aaab
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+
+\chapter{Command List}
+\section{Description:} This test checks that the input strings from the input string file are displayed correctly.
+
+\section{Expected results:} The output from the list command matches the input string file.
+\begin{verbatim}
+Command: l
+1. aabb
+2. aaa
+3. aaab
+\end{verbatim}
+\section{Results:} The output from the list command does match the input string file.
+\begin{verbatim}
+Command: l
+1. aabb
+2. aaa
+3. aaab
+
+\end{verbatim}
+
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+
+\chapter{Command Quit}
+\section{Description:} This test checks that a Turing Machine can be stopped with the quit command.
+\section{Expected results:} The quit command will stop the Turing Machine and when the run command is used a new input string is required.
+
+\section{Results:} The Turing machine is quit and a new input string is required.
+\begin{verbatim}
+Command: r
+Input string number: 1
+0. [s0]aabb
+1. X[s1]abb
+Command: q
+Input string aabb was not accepted or rejected in 1 transitions.
+Command: r
+Input string number:
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+\chapter{Command Run}
+\section{Description:} This test checks that the run command prompts for a input string and if provided with a bad one will cancel the command. If provided with a valid input string index the Turing machine will start. If the Turing machine is already running it will continue it.
+\section{Expected results:} The input string index of 324 is invalid, input string of 1 is valid and the Turing machine starts, and running it again continues.
+\section{Results:} The run command did reject 324, accepted 1 and started Turing machine. Finally it continued when used again on a running Turing machine.
+\begin{verbatim}
+Command: r
+Input string number: 324
+Error: Number is not a index to a input string.
+Command: r
+Input string number: 1
+0. [s0]aabb
+1. X[s1]abb
+Command: r
+2. Xa[s1]bb
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+\chapter{Command Set}
+\section{Description:} This test checks that the maximum number of transitions changes when the set command is used.
+\section{Expected results:} The command will reject -1 but accept 10. Also when the run command is used it will run 10 transitions.
+
+\section{Results:} The command rejected -1 but accepted 10. Also it changed the maximum amount of transitions.
+\begin{verbatim}
+Command: e
+Maximum number of transitions [1]: -1
+Error: A non-numerical input entered.
+Command: e
+Maximum number of transitions [1]: 10
+Number of transitions changed to 10.
+Command: r
+Input string number: 1
+0. [s0]aabb
+10. XX[s0]YY
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+\chapter{Command Show}
+\section{Description:} This test checks that the static information is displayed plus the current settings.
+\section{Expected results:} Max Transitions is 10, Truncation is 32, and the Turing Machine is running on 'aabb' for 10 transitions.
+
+\section{Results:} The static message, max transitions, truncation, and Turing machine status are all displayed correctly.
+\begin{verbatim}
+Course name: CPT_S 322
+Semester: Spring
+Year: 2016
+
+Instructor: Neil Corrigan
+Author: David Harkins
+
+Version number: 3
+Max transitions: 10
+Max cells to left and right: 32
+
+Name of TM: TM_DATA
+TM Status: Running.
+Currently running on the input string 'aabb' for 10 transitions.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+\chapter{Command Truncate}
+\section{Description:} This test checks that the truncation command changes the maximum number on each side that are displayed.
+\section{Expected results:} The command to reject the value of -1 and accept the value of 1.
+
+\section{Results:} The command did reject the invalid value and accepted the valid. The command saved the value which can be proven by the run command only displaying one character.
+\begin{verbatim}
+Maximum number of cells [1]: -1
+Error: A non-numerical input entered.
+Command: t
+Maximum number of cells [10]: 1
+Setting changed to 1.
+Command: r
+13. <-[s4]
+Input string aabb was accepted in 13 transitions.
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+
+
+
+
+
+
+\chapter{Command View}
+\section{Description:} This test checks that the view command displays the Turing Machine definition file that was loaded.
+\section{Expected results:} Expected to be displayed is the same data to the this definition but in different formatting:
+\begin{verbatim}
+This Turing machine accepts the language 
+of one or more a's followed by the same number of b's.
+
+STATES: s0 s1 s2 s3 s4
+	
+INPUT_ALPHABET: a b
+
+TAPE_ALPHABET: a b X Y -
+
+TRANSITION_FUNCTION:
+s0 a  s1 X R
+s0 Y  s3 Y R
+s1 a  s1 a R
+s1 b  s2 Y L
+s1 Y  s1 Y R
+s2 a  s2 a L
+s2 X  s0 X R
+s2 Y  s2 Y L
+s3 Y  s3 Y R
+s3 -  s4 - R
+
+INITIAL_STATE: s0
+
+BLANK_CHARACTER: -
+
+FINAL_STATES: s4
+
+
+\end{verbatim}
+\section{Results:} The information displayed is the same as from the definition file.
+\begin{verbatim}
+Command: v
+This Turing machine accepts the language of one 
+or more a's followed by the same number of b's.
+
+Q = {s0, s1, s2, s3, s4}
+
+Sigma = {a, b}
+
+Gamma = {a, b, X, Y, -}
+
+Delta(s0, a) = (s1, X, R)
+Delta(s0, Y) = (s3, Y, R)
+Delta(s1, a) = (s1, a, R)
+Delta(s1, b) = (s2, Y, L)
+Delta(s1, Y) = (s1, Y, R)
+Delta(s2, a) = (s2, a, L)
+Delta(s2, X) = (s0, X, R)
+Delta(s2, Y) = (s2, Y, L)
+Delta(s3, Y) = (s3, Y, R)
+Delta(s3, -) = (s4, -, R)
+
+Q0 = s0
+
+B = -
+
+F = {s4}
+\end{verbatim}
+\section{Test successful or Test failed:} Test failed.
+\pagebreak
+  
+\end{document}
+
