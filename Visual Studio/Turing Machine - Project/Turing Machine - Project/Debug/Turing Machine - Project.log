@@ -1,0 +1,27 @@
+﻿  Visable.cpp
+  Turing_Machine.cpp
+c:\users\david\desktop\git\turingmachinesimulator\source\turing_machine.cpp(171): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\desktop\git\turingmachinesimulator\source\turing_machine.cpp(307): warning C4101: 'Error': unreferenced local variable
+c:\users\david\desktop\git\turingmachinesimulator\source\turing_machine.cpp(317): warning C4101: 'Error': unreferenced local variable
+  Transition_Function.cpp
+  Transition.cpp
+  Tape_Alphabet.cpp
+  Tape.cpp
+c:\users\david\desktop\git\turingmachinesimulator\source\tape.cpp(174): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\desktop\git\turingmachinesimulator\source\tape.cpp(202): warning C4018: '<': signed/unsigned mismatch
+  States.cpp
+c:\users\david\desktop\git\turingmachinesimulator\source\states.cpp(130): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+c:\users\david\desktop\git\turingmachinesimulator\source\delete_command.h(79): warning C4018: '>=': signed/unsigned mismatch
+c:\users\david\desktop\git\turingmachinesimulator\source\delete_command.h(64): warning C4101: 'oor': unreferenced local variable
+c:\users\david\desktop\git\turingmachinesimulator\source\run_command.h(94): warning C4018: '>=': signed/unsigned mismatch
+c:\users\david\desktop\git\turingmachinesimulator\source\run_command.h(79): warning C4101: 'oor': unreferenced local variable
+c:\users\david\desktop\git\turingmachinesimulator\source\set_command.h(58): warning C4101: 'oor': unreferenced local variable
+c:\users\david\desktop\git\turingmachinesimulator\source\truncate_command.h(59): warning C4101: 'oor': unreferenced local variable
+  Input_Alphabet.cpp
+  Final_States.cpp
+c:\users\david\desktop\git\turingmachinesimulator\source\final_states.cpp(98): warning C4018: '<': signed/unsigned mismatch
+  crash.cpp
+  Generating Code...
+  Turing Machine - Project.vcxproj -> C:\Users\david\Desktop\git\TuringMachineSimulator\Visual Studio\Turing Machine - Project\Debug\Turing Machine - Project.exe
+  Turing Machine - Project.vcxproj -> C:\Users\david\Desktop\git\TuringMachineSimulator\Visual Studio\Turing Machine - Project\Debug\Turing Machine - Project.pdb (Full PDB)
