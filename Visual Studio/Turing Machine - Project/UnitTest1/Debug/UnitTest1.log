@@ -1,0 +1,26 @@
+﻿  stdafx.cpp
+  Visible.cpp
+  View_Command.cpp
+  Uppercase.cpp
+  Turing_Machine.cpp
+  Truncate_Command.cpp
+  Transition_Function.cpp
+  Transition.cpp
+  Tape_Alphabet.cpp
+  Tape.cpp
+  Delete_Command.cpp
+c:\_\turingmachinesimulator\source\delete_command.h(79): warning C4018: '>=': signed/unsigned mismatch
+c:\_\turingmachinesimulator\source\delete_command.h(64): warning C4101: 'oor': unreferenced local variable
+  States.cpp
+  Show_Command.cpp
+  Set_Command.cpp
+  Run_Command.cpp
+  Quit_Command.cpp
+  List_Command.cpp
+  Insert_Command.cpp
+  Input_Alphabet.cpp
+  Help_Command.cpp
+  Generating Code...
+Turing Machine - Project.lib(Main.obj) : error LNK2005: "void __cdecl Delete_Command(class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > &,class Turing_Machine &)" (?Delete_Command@@YAXAAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AAVTuring_Machine@@@Z) already defined in Delete_Command.obj
+     Creating library C:\_\TuringMachineSimulator\Visual Studio\Turing Machine - Project\Debug\Turing Machine - Unit Tests.lib and object C:\_\TuringMachineSimulator\Visual Studio\Turing Machine - Project\Debug\Turing Machine - Unit Tests.exp
+C:\_\TuringMachineSimulator\Visual Studio\Turing Machine - Project\Debug\Turing Machine - Unit Tests.exe : fatal error LNK1169: one or more multiply defined symbols found
