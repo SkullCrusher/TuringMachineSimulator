@@ -12,7 +12,7 @@ namespace TuringMachineUnitTests
 	{
 	public:
 
-		TEST_METHOD(Visable_zz)
+		TEST_METHOD(Visable_Test)
 		{
 			// TODO: Your test code here
 			std::string ShouldBeAllUpper = Visable("");

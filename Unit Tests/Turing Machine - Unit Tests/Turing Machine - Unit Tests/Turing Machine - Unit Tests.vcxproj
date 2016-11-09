@@ -154,6 +154,7 @@
     <ClInclude Include="Delete_Command.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Exit_Command.h" />
+    <ClInclude Include="FakeConnectors.h" />
     <ClInclude Include="File_Out.h" />
     <ClInclude Include="Final_States.h" />
     <ClInclude Include="Help_Command.h" />

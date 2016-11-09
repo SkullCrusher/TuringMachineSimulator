@@ -96,6 +96,9 @@
     <ClInclude Include="Visable.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="FakeConnectors.h">
+      <Filter>Unit Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

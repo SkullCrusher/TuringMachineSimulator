@@ -5,12 +5,8 @@
 #include <string>
 #include <sstream>
 
-#include "Turing_Machine.h"
-
-#include <stdio.h>  /* defines FILENAME_MAX */
-
-#include <direct.h>
-#define GetCurrentDir _getcwd
+#include "FakeConnectors.h"
+#include "View_Command.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -23,21 +19,19 @@ namespace TuringMachineUnitTests
 
 		TEST_METHOD(View_Command_Test)
 		{
-			// Fake user input ;)
-			std::istringstream iss("1\nds1\n");
-			std::cin.rdbuf(iss.rdbuf());
+				// Capture the std::cout.
+			Fake_StartSTDOutCapture();
+				
+				// Create a turing machine.
+			Turing_Machine TM = FakeTM();
 
-			char cCurrentPath[FILENAME_MAX];
-			if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))){int a = 0;}
-			cCurrentPath[sizeof(cCurrentPath) - 1] = '\0';
+				// Trigger the command.
+			View_Command(TM);
 
-			std::string Path = cCurrentPath;
-			Path += "\\..\\..\\..\\Example Files\\TM_DATA";
+				// Get the output.
+			std::string Output = Fake_GetSTDOutCapture();
 
-			Turing_Machine TM(Path);
-
-			
-
+			Assert::AreEqual(Output[0], 'T');
 
 		}
 

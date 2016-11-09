@@ -1,1 +1,1 @@
-<Playlist Version="1.0"><Add Test="TuringMachineUnitTests::UnitTest1::Truncate_Command_Test" /></Playlist>
+<Playlist Version="1.0"><Add Test="TuringMachineUnitTests::UnitTest1::Truncate_Command_Test" /><Add Test="TuringMachineUnitTests::UnitTest1::Uppercase" /><Add Test="TuringMachineUnitTests::UnitTest1::Visable_zz" /></Playlist>
