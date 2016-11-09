@@ -19,6 +19,8 @@ namespace TuringMachineUnitTests
 			std::istringstream iss("1\nds1\n");
 			std::cin.rdbuf(iss.rdbuf());
 
+			//void Delete_Command(vector<string> &list, Turing_Machine &TM);
+
 
 		}
 
