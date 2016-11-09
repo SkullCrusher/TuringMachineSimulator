@@ -180,8 +180,6 @@
   <ItemGroup>
     <ClCompile Include="crash.cpp" />
     <ClCompile Include="Delete_Command_Test.cpp" />
-    <ClCompile Include="Direction_Test.cpp" />
-    <ClCompile Include="Exit_Command_Test.cpp" />
     <ClCompile Include="Final_States.cpp" />
     <ClCompile Include="Final_States_Test.cpp" />
     <ClCompile Include="Input_Alphabet.cpp" />

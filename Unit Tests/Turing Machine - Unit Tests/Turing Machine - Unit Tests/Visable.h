@@ -24,6 +24,6 @@ using namespace std;
 * Purpose: Makes the empty string printable.
 * Operation: Changes the empty string to "\"
 */
-string Visable(string value);
+std::string Visable(string value);
 
 #endif

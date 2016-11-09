@@ -140,12 +140,6 @@
     <ClCompile Include="Delete_Command_Test.cpp">
       <Filter>Unit Test</Filter>
     </ClCompile>
-    <ClCompile Include="Direction_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Exit_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
     <ClCompile Include="Final_States_Test.cpp">
       <Filter>Unit Test</Filter>
     </ClCompile>

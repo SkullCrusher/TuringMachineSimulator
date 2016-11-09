@@ -12,12 +12,12 @@ namespace TuringMachineUnitTests
 	{
 	public:
 
-		TEST_METHOD(Visable)
+		TEST_METHOD(Visable_zz)
 		{
 			// TODO: Your test code here
-			//std::string ShouldBeAllUpper = Visable("");
+			std::string ShouldBeAllUpper = Visable("");
 
-			//Assert::AreEqual(ShouldBeAllUpper, std::string("\\"));
+			Assert::AreEqual(ShouldBeAllUpper, std::string("\\"));
 		}
 
 	};

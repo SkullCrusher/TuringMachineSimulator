@@ -1,4 +1,12 @@
-﻿  Delete_Command_Test.cpp
+﻿  Visable_Test.cpp
+  Generating Code...
+  Compiling...
+  Visable.cpp
+  Turing_Machine.cpp
+c:\_\turingmachinesimulator\unit tests\turing machine - unit tests\turing machine - unit tests\turing_machine.cpp(171): warning C4018: '<': signed/unsigned mismatch
+c:\_\turingmachinesimulator\unit tests\turing machine - unit tests\turing machine - unit tests\turing_machine.cpp(307): warning C4101: 'Error': unreferenced local variable
+c:\_\turingmachinesimulator\unit tests\turing machine - unit tests\turing machine - unit tests\turing_machine.cpp(317): warning C4101: 'Error': unreferenced local variable
+  Generating Code...
      Creating library C:\_\TuringMachineSimulator\Unit Tests\Turing Machine - Unit Tests\Debug\Turing Machine - Unit Tests.lib and object C:\_\TuringMachineSimulator\Unit Tests\Turing Machine - Unit Tests\Debug\Turing Machine - Unit Tests.exp
   Turing Machine - Unit Tests.vcxproj -> C:\_\TuringMachineSimulator\Unit Tests\Turing Machine - Unit Tests\Debug\Turing Machine - Unit Tests.dll
   Turing Machine - Unit Tests.vcxproj -> C:\_\TuringMachineSimulator\Unit Tests\Turing Machine - Unit Tests\Debug\Turing Machine - Unit Tests.pdb (Partial PDB)
