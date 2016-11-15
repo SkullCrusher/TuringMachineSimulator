@@ -180,19 +180,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="crash.cpp" />
-    <ClCompile Include="Delete_Command_Test.cpp" />
     <ClCompile Include="Final_States.cpp" />
-    <ClCompile Include="Final_States_Test.cpp" />
     <ClCompile Include="Input_Alphabet.cpp" />
-    <ClCompile Include="Input_Alphabet_Test.cpp" />
-    <ClCompile Include="Insert_Command_Test.cpp" />
-    <ClCompile Include="List_Command_Test.cpp" />
-    <ClCompile Include="Quit_Command_Test.cpp" />
-    <ClCompile Include="Run_Command_Test.cpp" />
     <ClCompile Include="Set_Command_Test.cpp" />
-    <ClCompile Include="Show_Command_Test.cpp" />
     <ClCompile Include="States.cpp" />
-    <ClCompile Include="States_Test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -201,15 +192,10 @@
     </ClCompile>
     <ClCompile Include="Tape.cpp" />
     <ClCompile Include="Tape_Alphabet.cpp" />
-    <ClCompile Include="Tape_Alphabet_Test.cpp" />
-    <ClCompile Include="Tape_Test.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Transition_Function.cpp" />
-    <ClCompile Include="Transition_Function_Test.cpp" />
-    <ClCompile Include="Transition_Test.cpp" />
     <ClCompile Include="Truncate_Command_Test.cpp" />
     <ClCompile Include="Turing_Machine.cpp" />
-    <ClCompile Include="Turing_Machine_Test.cpp" />
     <ClCompile Include="Uppercase.cpp" />
     <ClCompile Include="View_Command_Test.cpp" />
     <ClCompile Include="Visable.cpp" />

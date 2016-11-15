@@ -140,52 +140,10 @@
     <ClCompile Include="Truncate_Command_Test.cpp">
       <Filter>Unit Test</Filter>
     </ClCompile>
-    <ClCompile Include="Delete_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Final_States_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Input_Alphabet_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Insert_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="List_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Quit_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Run_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
     <ClCompile Include="Set_Command_Test.cpp">
       <Filter>Unit Test</Filter>
     </ClCompile>
-    <ClCompile Include="Show_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="States_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Tape_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Tape_Alphabet_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Transition_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Transition_Function_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
     <ClCompile Include="View_Command_Test.cpp">
-      <Filter>Unit Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Turing_Machine_Test.cpp">
       <Filter>Unit Test</Filter>
     </ClCompile>
     <ClCompile Include="Uppercase.cpp">
