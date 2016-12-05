@@ -106,6 +106,9 @@ int main(int argc, char** arg) {
 		InputString_File.close();
 	}
 
+		// Print out the help guide.
+	Help_Command();
+	
 		// The input string size before and after the command.
 	int Temp_Size = 0;
 	bool Quit = false;
