@@ -12,3 +12,6 @@ For more detail on the structure of each I wrote large requirements and design d
 The software will compile on Ubuntu using GCC, please use the make file.
 
 To run do ./TMEXE Definitionfile without the .DEF.
+
+## Overall design structure
+![alt tag](https://raw.githubusercontent.com/SkullCrusher/TuringMachineSimulator/master/Documentation/Raw%20LaTeX%20Files/design-specification-cpts-322/UML_Overview.png)
